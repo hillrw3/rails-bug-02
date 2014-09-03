@@ -16,4 +16,15 @@ feature 'Auth' do
     expect(page).to have_content("user@example.com")
   end
 
+  scenario 'User is automatically signed in after registration' do
+    visit '/'
+    click_on "Register"
+    fill_in "Name", with: "Rob"
+    fill_in "Email", with: "Rob@example.com"
+    fill_in "Password", with: "password"
+    fill_in "Confirm", with: "password"
+    click_button "Register"
+    expect(page).to have_content "You are logged in successfully."
+  end
+
 end
